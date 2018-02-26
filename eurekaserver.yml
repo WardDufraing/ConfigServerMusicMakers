@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: heroku
+eureka:
+  instance:
+#    hostname: superteam-eurekaserver.herokuapp.com
+#    instance-id: superteam-eurekaserver.herokuapp.com
+  client:
+    serviceUrl:
+      defaultZone: https://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    enable-self-preservation: false
+
+server:
+  port: 1111
+security:
+  basic:
+    enabled: false
