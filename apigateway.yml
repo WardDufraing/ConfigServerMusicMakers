@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: apigateway
+server:
+  port: 9191
+
+zuul:
+  routes:
+    test-service:
+      path: /testservice/**
+      serviceId: test-service
+    library-service:
+      path: /libraryservice/**
+      serviceId: library-service
+    accounts-service:
+      path: /accounts/**
+      serviceId: accounts-service
+    chat-service:
+      path: /chat/**
+      serviceId: chat-service
+  prefix: /api
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: https://superteam-eurekaserver.herokuapp.com/eureka/
+
+# Increase the Hystrix timeout to 60s (for all)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+security:
+  basic:
+    enabled: false
+
+ribbon:
+  eager-load:
+    enabled: true
+
